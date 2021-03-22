@@ -1,0 +1,79 @@
+//queue using arrays
+#include<iostream>
+using namespace std;
+#define MAX 1000
+class Queue{
+    int front;
+    int rear;
+    public:
+    int a[MAX];
+    Queue(){
+    front=rear=-1;
+    }
+    void enqueue(int val);
+    int dequeue();
+    void display();
+};
+void Queue::enqueue(int val){
+    if(rear>=MAX-1){
+      cout << "Queue overflow" <<endl;
+    }
+    else if(rear==-1 && front==-1){
+        rear=rear+1;
+        front=front+1;
+        a[rear]=val;
+    }
+    else{
+        rear=rear+1;
+        a[rear]=val;
+    }
+}
+int Queue::dequeue(){
+    if(front<0){
+        cout<<"Queue is underflow";
+    }
+    else{
+        int x=a[front];
+        front=front+1;
+        return x;
+    }
+}
+void Queue::display(){
+    if(front>rear){
+        cout<<"queue is empty";
+    }
+    else{
+    for(int i=front;i<=rear;i++){
+        cout<<a[i]<<"  ";
+    }
+    }
+}
+int main(){
+    class Queue q;
+    int ch,val;
+    do{
+    cout<<"\n1.enqueue\t2.dequeue\t3.display\t4.exit\n";
+    cout<<"enter a choice:";
+    cin>>ch;
+    switch(ch){
+        case 1:
+            cout<<"enter a element:";
+            cin>>val;
+            q.enqueue(val);
+            break;
+        case 2:
+            cout<<"popped element:"<<q.dequeue();
+            break;
+        case 3:
+            cout<<"elements in queue are:\n";
+            q.display();
+            break;
+        case 4:
+            exit(0);
+            break;
+        default:
+            cout<<"enter a valid choice:";
+           
+    }
+}while(true);
+}
