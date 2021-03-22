@@ -1,0 +1,94 @@
+//stack array implementation
+#include<iostream>
+using namespace std;
+ 
+#define MAX 1000
+ 
+class Stack {
+    int top;
+ 
+public:
+    int a[MAX]; // Maximum size of Stack
+ 
+    Stack() { top = -1; }
+    bool push(int x);
+    int pop();
+    int peek();
+    bool isEmpty();
+    void display();
+};
+bool Stack::push(int x){
+    if(top>=MAX-1){
+        std::cout << "Stack overflow" << std::endl;
+        return false;
+    }
+    else{
+        top=top+1;
+        a[top]=x;
+        return true;
+    }
+}
+int Stack::pop(){
+    if(top<0){
+        cout<<"Stack underflow";
+        return 0;
+    }
+    else{
+        int x=a[top];
+        top=top-1;
+        return x;
+    }
+}
+int Stack::peek(){
+    if(top<0){
+        cout<<"Stack underflow";
+        return 0;
+    }
+    else
+    return a[top];
+}
+bool Stack::isEmpty(){
+    return (top<0);
+}
+void Stack::display(){
+    for(int i=top;i>=0;i--){
+        cout<<a[i]<<"\t";
+    }
+}
+int main(){
+    class Stack s;
+    int ch,v;
+    do{
+        cout<<"\n1.push\t 2.pop \t3.peek\t4.isEmpty\t5.display\t6.exit\n";
+        cout<<"enter choice:";
+        cin>>ch;
+        switch(ch){
+            case 1:
+                cout<<"enter input:";
+                cin>>v;
+                s.push(v);
+                break;
+            case 2:
+                cout<<s.pop()<<"is popped\n";
+                break;
+            case 3:
+                cout<<s.peek()<<"is peek element\n";
+                break;
+            case 4:
+                if(s.isEmpty())
+                    cout<<"stack is empty\n";
+                else
+                    cout<<"stack is not empty\n";
+                break;
+            case 5:
+                cout<<"elements of the stack are:\n";
+                s.display();
+                break;
+            case 6:
+                exit(0);
+            default:
+                cout<<"invalid choice\n";
+        }
+        
+    }while(true);
+}
